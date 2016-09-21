@@ -1,0 +1,17 @@
+{
+  "autoload": {
+    "psr-4": {
+      "Unifi\\Api\\": "src/"
+    }
+  },
+  "description": "A simple client for UBNT's new controller api to perform some basic tasks.",
+  "homepage": "http://vaibhavpandeyvpz.github.io/unifi-api",
+  "keywords": ["ubnt", "unifi", "api", "client"],
+  "license": "MIT",
+  "name" : "vaibhavpandeyvpz/unifi-api",
+  "require": {
+    "php": ">=5.4.0",
+    "guzzlehttp/guzzle": "~6.0"
+  },
+  "type": "library"
+}
