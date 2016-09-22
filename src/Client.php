@@ -50,7 +50,7 @@ class Client implements ClientInterface
         if ($bandwidth > 0) {
             $data['bytes'] = $bandwidth;
         }
-        return $this->post("/api/s/{$site}/%s/cmd/stamgr", $data) !== false;
+        return $this->post("/api/s/{$site}/cmd/stamgr", $data) !== false;
     }
 
     /**
