@@ -102,7 +102,7 @@ class Client implements ClientInterface
      */
     public function login($username, $password)
     {
-        return $this->post('/login', [
+        return $this->post('/api/login', [
             'username' => $username,
             'password' => $password,
         ]) !== false;
@@ -113,7 +113,7 @@ class Client implements ClientInterface
      */
     public function logout()
     {
-        $this->get('/logout');
+        $this->get('/api/logout');
     }
 
     /**
