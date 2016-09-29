@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>vaibhavpandeyvpz/unifi-api by vaibhavpandeyvpz</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">vaibhavpandeyvpz/unifi-api</h1>
+      <h2 class="project-tagline">A simple client for UBNT&#39;s new controller api to perform some basic tasks.</h2>
+      <a href="https://github.com/vaibhavpandeyvpz/unifi-api" class="btn">View on GitHub</a>
+      <a href="https://github.com/vaibhavpandeyvpz/unifi-api/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/vaibhavpandeyvpz/unifi-api/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="vaibhavpandeyvpzunifi-api" class="anchor" href="#vaibhavpandeyvpzunifi-api" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>vaibhavpandeyvpz/unifi-api</h1>
+
+<p>A simple client for <a href="https://www.ubnt.com/">UBNT</a>'s new controller api to perform some basic tasks.</p>
+
+<p><a href="https://github.com/vaibhavpandeyvpz/unifi-api/releases"><img src="https://img.shields.io/github/release/vaibhavpandeyvpz/unifi-api.svg?style=flat-square" alt="Latest Version"></a> <a href="https://scrutinizer-ci.com/g/vaibhavpandeyvpz/unifi-api/?branch=master"><img src="https://scrutinizer-ci.com/g/vaibhavpandeyvpz/unifi-api/badges/quality-score.png?b=master" alt="Scrutinizer Code Quality"></a> <a href="https://packagist.org/packages/vaibhavpandeyvpz/unifi-api"><img src="https://img.shields.io/packagist/dt/vaibhavpandeyvpz/unifi-api.svg?style=flat-square" alt="Total Downloads"></a> <a href="LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square" alt="Software License"></a></p>
+
+<h2>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install</h2>
+
+<div class="highlight highlight-source-shell"><pre>composer require vaibhavpandeyvpz/unifi-api</pre></div>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-pse">&lt;?php</span><span class="pl-s1"></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">/**</span></span>
+<span class="pl-s1"><span class="pl-c"> * @desc Create a new api client instance and login to</span></span>
+<span class="pl-s1"><span class="pl-c"> *      controller using username &amp; password.</span></span>
+<span class="pl-s1"><span class="pl-c"> */</span></span>
+<span class="pl-s1"><span class="pl-smi">$guzzle</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">GuzzleHttp\</span><span class="pl-c1">Client</span>([</span>
+<span class="pl-s1">   <span class="pl-s"><span class="pl-pds">'</span>base_uri<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>https://localhost:8443/<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">   <span class="pl-s"><span class="pl-pds">'</span>cookies<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">true</span>,</span>
+<span class="pl-s1">]);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$client</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Unifi\Api\</span><span class="pl-c1">Client</span>(<span class="pl-smi">$guzzle</span>);</span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>login(<span class="pl-s"><span class="pl-pds">'</span>admin_user<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>secret_pass<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">/**</span></span>
+<span class="pl-s1"><span class="pl-c"> * @desc Get list of connected devices for a site.</span></span>
+<span class="pl-s1"><span class="pl-c"> */</span></span>
+<span class="pl-s1"><span class="pl-smi">$devices</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>devices(<span class="pl-s"><span class="pl-pds">'</span>default<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">/**</span></span>
+<span class="pl-s1"><span class="pl-c"> * @desc Get list of connected guests for a site.</span></span>
+<span class="pl-s1"><span class="pl-c"> */</span></span>
+<span class="pl-s1"><span class="pl-smi">$guests</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>guests(<span class="pl-s"><span class="pl-pds">'</span>default<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">/**</span></span>
+<span class="pl-s1"><span class="pl-c"> * @desc Authorize a guest MAC address for 10 minutes.</span></span>
+<span class="pl-s1"><span class="pl-c"> */</span></span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>authorize(<span class="pl-s"><span class="pl-pds">'</span>default<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>6f:d7:b9:7f:4e:61<span class="pl-pds">'</span></span>, <span class="pl-c1">10</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">/**</span></span>
+<span class="pl-s1"><span class="pl-c"> * @desc Un-authorize a guest MAC address.</span></span>
+<span class="pl-s1"><span class="pl-c"> */</span></span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>unauthorize(<span class="pl-s"><span class="pl-pds">'</span>default<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>6f:d7:b9:7f:4e:61<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">/**</span></span>
+<span class="pl-s1"><span class="pl-c"> * @desc Update WLAN configuration for a site &amp; a provided</span></span>
+<span class="pl-s1"><span class="pl-c"> *      WLAN ID.</span></span>
+<span class="pl-s1"><span class="pl-c"> */</span></span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>wlanconf(<span class="pl-s"><span class="pl-pds">'</span>default<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>dd982884edf68487cb8ff664b3dfdf12<span class="pl-pds">'</span></span>, [</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>name<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>My New SSID<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">]);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">/**</span></span>
+<span class="pl-s1"><span class="pl-c"> * @desc Reboot an access point.</span></span>
+<span class="pl-s1"><span class="pl-c"> */</span></span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>reboot(<span class="pl-s"><span class="pl-pds">'</span>default<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>6f:d7:b9:7f:4e:61<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">/**</span></span>
+<span class="pl-s1"><span class="pl-c"> * @desc You can logout when you are done.</span></span>
+<span class="pl-s1"><span class="pl-c"> */</span></span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>logout();</span></pre></div>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
+
+<p>See <a href="https://github.com/vaibhavpandeyvpz/unifi-api/blob/master/LICENSE.md">LICENSE.md</a> file.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/vaibhavpandeyvpz/unifi-api">vaibhavpandeyvpz/unifi-api</a> is maintained by <a href="https://github.com/vaibhavpandeyvpz">vaibhavpandeyvpz</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
