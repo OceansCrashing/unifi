@@ -1,19 +1,19 @@
 <?php
 
 /*
- * This file is part of vaibhavpandeyvpz/unifi-api package.
+ * This file is part of invokatis/unifi package.
  *
- * (c) Vaibhav Pandey <contact@vaibhavpandey.com>
+ * (c) Invokatis Technologies <admin@invokatis.tech>
  *
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.md.
  */
 
-namespace Unifi\Api;
+namespace Unifi;
 
 /**
  * Interface ClientInterface
- * @package Unifi\Api
+ * @package Unifi
  */
 interface ClientInterface
 {
@@ -45,7 +45,7 @@ interface ClientInterface
      * @param array $data
      * @return object|bool
      */
-    public function get($path, array $data = []);
+    public function get($path, array $data = array());
 
     /**
      * @param string $site

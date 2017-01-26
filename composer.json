@@ -1,17 +1,27 @@
 {
+  "authors": [
+    {
+      "name": "Invokatis Technologies",
+      "email": "admin@invokatis.tech"
+    },
+    {
+      "name": "Vaibhav Pandey",
+      "email": "contact@vaibhavpandey.com"
+    }
+  ],
   "autoload": {
     "psr-4": {
-      "Unifi\\Api\\": "src/"
+      "Unifi\\": "src/"
     }
   },
   "description": "A simple client for UBNT's new controller api to perform some basic tasks.",
-  "homepage": "http://vaibhavpandeyvpz.github.io/unifi-api",
+  "homepage": "http://invokatis.github.io/unifi",
   "keywords": ["ubnt", "unifi", "api", "client"],
   "license": "MIT",
-  "name" : "vaibhavpandeyvpz/unifi-api",
+  "name" : "invokatis/unifi",
   "require": {
-    "php": ">=5.4.0",
-    "guzzlehttp/guzzle": "~6.0"
+    "php": "^5.4 || ^7.0",
+    "guzzlehttp/guzzle": "^5.0 || ^6.0"
   },
   "type": "library"
 }

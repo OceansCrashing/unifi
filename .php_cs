@@ -1,29 +1,25 @@
 <?php
 
 $header = <<<EOF
-This file is part of vaibhavpandeyvpz/unifi-api package.
+This file is part of invokatis/unifi package.
 
-(c) Vaibhav Pandey <contact@vaibhavpandey.com>
+(c) Invokatis Technologies <admin@invokatis.tech>
 
 This source file is subject to the MIT license that is bundled
 with this source code in the file LICENSE.md.
 EOF;
 
-use Symfony\CS\Config\Config;
-use Symfony\CS\Finder\DefaultFinder;
-use Symfony\CS\FixerInterface;
-use Symfony\CS\Fixer\Contrib\HeaderCommentFixer;
-
-HeaderCommentFixer::setHeader($header);
+use PhpCsFixer\Config;
+use PhpCsFixer\Finder;
 
 return Config::create()
-    ->finder(
-        DefaultFinder::create()
+    ->setFinder(
+        Finder::create()
             ->in(__DIR__ . '/src')
     )
-    ->fixers(array(
-        'header_comment',
-        'short_array_syntax'
+    ->setRules(array(
+        '@PSR2' => true,
+        'header_comment' => array('header' => $header),
+        'array_syntax' => true,
     ))
-    ->level(FixerInterface::PSR2_LEVEL)
     ->setUsingCache(true);

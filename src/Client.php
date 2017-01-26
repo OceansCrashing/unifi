@@ -1,48 +1,32 @@
 <?php
 
 /*
- * This file is part of vaibhavpandeyvpz/unifi-api package.
+ * This file is part of invokatis/unifi package.
  *
- * (c) Vaibhav Pandey <contact@vaibhavpandey.com>
+ * (c) Invokatis Technologies <admin@invokatis.tech>
  *
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.md.
  */
 
-namespace Unifi\Api;
-
-use GuzzleHttp\Client as Guzzle;
+namespace Unifi;
 
 /**
  * Class Client
- * @package Unifi\Api
+ * @package Unifi
  */
-class Client implements ClientInterface
+class Client extends ClientAbstract
 {
-    /**
-     * @var Guzzle
-     */
-    protected $client;
-
-    /**
-     * Client constructor.
-     * @param Guzzle $client
-     */
-    public function __construct(Guzzle $client)
-    {
-        $this->client = $client;
-    }
-
     /**
      * {@inheritdoc}
      */
     public function authorize($site, $mac, $minutes, $speed = 0, $bandwidth = 0)
     {
-        $data = [
+        $data = array(
             'cmd' => 'authorize-guest',
             'mac' => $mac,
             'minutes' => $minutes,
-        ];
+        );
         if ($speed > 0) {
             $data['up'] = $speed;
             $data['down'] = $speed;
@@ -58,10 +42,10 @@ class Client implements ClientInterface
      */
     public function block($site, $mac)
     {
-        return $this->post("/api/s/{$site}/%s/cmd/stamgr", [
+        return $this->post("/api/s/{$site}/%s/cmd/stamgr", array(
             'cmd' => 'block-sta',
             'mac' => $mac,
-        ]) !== false;
+        )) !== false;
     }
 
     /**
@@ -70,22 +54,7 @@ class Client implements ClientInterface
     public function devices($site)
     {
         $response = $this->get("/api/s/{$site}/stat/device");
-        return $response ? $response->data : [];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function get($path, array $data = [])
-    {
-        $response = $this->client->request('GET', $path, [ 'query' => $data ]);
-        if ($response->getStatusCode() == 200) {
-            $json = json_decode($response->getBody());
-            if ($json->meta->rc === 'ok') {
-                return $json;
-            }
-        }
-        return false;
+        return $response ? $response->data : array();
     }
 
     /**
@@ -94,7 +63,7 @@ class Client implements ClientInterface
     public function guests($site)
     {
         $response = $this->get("/api/s/{$site}/stat/sta");
-        return $response ? $response->data : [];
+        return $response ? $response->data : array();
     }
 
     /**
@@ -102,10 +71,10 @@ class Client implements ClientInterface
      */
     public function login($username, $password)
     {
-        return $this->post('/api/login', [
+        return $this->post('/api/login', array(
             'username' => $username,
             'password' => $password,
-        ]) !== false;
+        )) !== false;
     }
 
     /**
@@ -121,25 +90,10 @@ class Client implements ClientInterface
      */
     public function reboot($site, $mac)
     {
-        return $this->post("/api/s/{$site}/cmd/devmgr", [
+        return $this->post("/api/s/{$site}/cmd/devmgr", array(
             'cmd' => 'restart',
             'mac' => $mac,
-        ]) !== false;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function post($path, $data = null)
-    {
-        $response = $this->client->request('POST', $path, [ 'json' => $data ]);
-        if ($response->getStatusCode() == 200) {
-            $json = json_decode($response->getBody());
-            if ($json->meta->rc === 'ok') {
-                return $json;
-            }
-        }
-        return false;
+        )) !== false;
     }
 
     /**
@@ -147,10 +101,10 @@ class Client implements ClientInterface
      */
     public function unauthorize($site, $mac)
     {
-        return $this->post("/api/s/{$site}/cmd/stamgr", [
+        return $this->post("/api/s/{$site}/cmd/stamgr", array(
             'cmd' => 'unauthorize-guest',
             'mac' => $mac,
-        ]) !== false;
+        )) !== false;
     }
 
     /**
