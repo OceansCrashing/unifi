@@ -6,6 +6,8 @@ A simple client for [UBNT](https://www.ubnt.com/)'s new controller api to perfor
 [![PHP Version][php-version-image]][php-version-url]
 [![License][license-image]][license-url]
 
+[![SensioLabsInsight][insights-image]][insights-url]
+
 Install
 -------
 ```bash
@@ -78,3 +80,5 @@ See [LICENSE.md][license-url] file.
 [php-version-url]: https://packagist.org/packages/invokatis/unifi
 [license-image]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
 [license-url]: LICENSE.md
+[insights-image]: https://insight.sensiolabs.com/projects/fb0e1f8e-595a-4695-82fd-a649a567abaf/small.png
+[insights-url]: https://insight.sensiolabs.com/projects/fb0e1f8e-595a-4695-82fd-a649a567abaf
