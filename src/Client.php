@@ -62,6 +62,15 @@ class Client extends ClientAbstract
      */
     public function guests($site)
     {
+        $response = $this->get("/api/s/{$site}/stat/guest");
+        return $response ? $response->data : array();
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function clients($site)
+    {
         $response = $this->get("/api/s/{$site}/stat/sta");
         return $response ? $response->data : array();
     }
